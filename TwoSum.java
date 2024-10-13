@@ -1,32 +1,51 @@
+import java.util.Scanner;
 import java.util.Arrays;
 
-/**
- * TwoSum
- * Intution is Bro 3 steps
- * one- sort arr
- * two- two pointer l,r sum == target then return 
- * three- movement algo -> if(sum > target) r--; else l++;
+/*
+ * intution 3 steps
+ * step1: Sort(arr)
+ * step2: two pointer l,r
+ * step3: (main algo) sum = arr[l]+arr[r] if(sum==target) cool get answer if(sum>target)r--elsel++
  */
 public class TwoSum {
-   public static void main(String[] args){
-    int target =9;
-    int[] arr = new int[]{2,7,11,15};
-    Arrays.sort(arr);
-    int l=0;
-    int r= arr.length-1;
-    while(l<r){
-        int t = arr[l]+arr[r];
-        if(t == target){
-            System.out.println(l+" "+r);
-            return;
-        }else if(t > target){
-            r--;
-        }else{
-            l++;
+    private static int[] indexes(int[]arr,int target){
+        int l=0;
+        int r=arr.length-1;
+        Arrays.sort(arr);
+        while (l<r) {
+            int sum = arr[l]+arr[r];
+            if(sum==target){
+                return new int[]{l,r};
+            }
+            if(sum > target){
+                r--;
+            }else{
+                l++;
+            }
         }
+        return null;
+
+        
     }
-    System.out.println("No");
-    
-   }
-    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the input size");
+        int size = sc.nextInt();
+        int[] arr = new int[size];
+        System.out.println("Enter the target: ");
+        int target = sc.nextInt();
+        System.out.println("Fill the arrays elements: ");
+        for(int i=0;i<size;i++){
+            System.out.print("Enter the element "+i+" index");
+            arr[i] = sc.nextInt();
+            System.out.println();
+        }
+        int[] result = indexes(arr, target);
+            if(result != null){
+            System.out.print("["+ result[0]+" "+result[1]+"]");
+            }else{
+                System.out.println("No");
+            }
+        sc.close();
+    }
 }
