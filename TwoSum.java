@@ -2,7 +2,10 @@ import java.util.Arrays;
 
 /**
  * TwoSum
- * 
+ * Intution is Bro 3 steps
+ * one- sort arr
+ * two- two pointer l,r sum == target then return 
+ * three- movement algo -> if(sum > target) r--; else l++;
  */
 public class TwoSum {
    public static void main(String[] args){
